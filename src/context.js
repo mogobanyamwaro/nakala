@@ -8,6 +8,7 @@ const AppProvider = ({ children }) => {
   const [alert, myAlert] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [auth, setIsAuth] = useState(false);
 
   const setAlert = (msg, alertType, timeout = 5000) => {
     const id = uuid();
@@ -42,7 +43,7 @@ const AppProvider = ({ children }) => {
       }
       setLoading(false);
 
-      setAlert('Authenticated successfully', 'success');
+      // setAlert('Authenticated successfully', 'success');
     } catch (err) {
       setLoading(false);
       setIsAuthenticated(false);
@@ -63,13 +64,14 @@ const AppProvider = ({ children }) => {
     try {
       setLoading(true);
       await axios.post(`/api/registration/signup`, body, config);
-
+      setIsAuth(true);
       setLoading(false);
 
-      setAlert('go to your email to login', 'success');
+      // setAlert('go to your email to login', 'success');
     } catch (err) {
       setLoading(false);
       console.log(err);
+      setIsAuth(false);
 
       setAlert('Error Authenticating', 'error');
     }
@@ -77,7 +79,7 @@ const AppProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     setIsAuthenticated(false);
-    setAlert('logout successful.', 'success');
+    // setAlert('logout successful.', 'success');
   };
 
   return (
@@ -87,6 +89,7 @@ const AppProvider = ({ children }) => {
         logout,
         setAlert,
         signup,
+        auth,
         alert,
         loading,
         isAuthenticated,

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useGlobalContext } from '../context';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image1 from '../assets/images/Image1.jpg';
 const Signup = () => {
-  const { setAlert, signup } = useGlobalContext();
+  const { setAlert, signup, auth } = useGlobalContext();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,6 +32,7 @@ const Signup = () => {
       formData.password2 = '';
     }
   };
+  if (auth) return <Redirect to="/email" />;
 
   return (
     <MainForm>
