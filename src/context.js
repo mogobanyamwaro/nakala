@@ -7,7 +7,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [alert, myAlert] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const setAlert = (msg, alertType, timeout = 5000) => {
     const id = uuid();
@@ -36,8 +36,8 @@ const AppProvider = ({ children }) => {
       setLoading(true);
       const res = await axios.post(`/api/token/`, body, config);
       if (res) {
-        setIsAuthenticated(true);
         localStorage.setItem('token', res.data);
+        setIsAuthenticated(true);
         setLoading(false);
       }
       setLoading(false);
@@ -47,7 +47,7 @@ const AppProvider = ({ children }) => {
       setLoading(false);
       setIsAuthenticated(false);
       localStorage.removeItem('token');
-
+      console.log(err);
       setAlert('Error Authenticating', 'error');
     }
   };
@@ -75,9 +75,9 @@ const AppProvider = ({ children }) => {
     }
   };
   const logout = () => {
-    setAlert('logout successful.', 'success');
     localStorage.removeItem('token');
     setIsAuthenticated(false);
+    setAlert('logout successful.', 'success');
   };
 
   return (

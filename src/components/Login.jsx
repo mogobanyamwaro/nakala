@@ -27,7 +27,7 @@ const Login = () => {
     formData.password = '';
   };
 
-  // if (isAuthenticated) return <Redirect to="/covid" />;
+  if (isAuthenticated) return <Redirect to="/covid" />;
 
   return (
     <MainForm>

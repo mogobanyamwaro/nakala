@@ -9,9 +9,13 @@ import Alert from './Alert';
 const Navbar = ({ toggle }) => {
   const { logout, isAuthenticated, loading } = useGlobalContext();
   const authLinks = (
-    <NavMenuLinks onClick={logout} href="#!">
-      Logout
-    </NavMenuLinks>
+    <Fragment>
+      {/* <NavMenuLinks onClick={() => logout()} href="#!">
+        Logout
+      </NavMenuLinks> */}
+      <Button onClick={logout}>Logout</Button>
+      <NavMenuLinks to="/covid">see data</NavMenuLinks>
+    </Fragment>
   );
   const guestLinks = (
     <Fragment>
@@ -25,11 +29,6 @@ const Navbar = ({ toggle }) => {
         <Logo to="/">Velyvx</Logo>
         <MenuBars onClick={toggle} />
         <NavMenu>
-          <NavMenuLinks to="/covid">see data</NavMenuLinks>
-          <NavMenuLinks onClick={logout} href="#!">
-            Logout
-          </NavMenuLinks>
-
           {!loading && (
             <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
           )}
@@ -45,7 +44,7 @@ const Nav = styled.nav`
   height: 60px;
   /* background-color: #000; */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 1rem 2rem;
   z-index: 100;
   position: fixed;
@@ -107,4 +106,23 @@ const NavBtn = styled.div`
   @media screen and (max-width: 768px) {
     display: none;
   }
+`;
+
+const Button = styled.button`
+  background: #333;
+  white-space: no-wrap;
+  outline: none;
+  border: none;
+  min-width: 100px;
+  text-decoration: none;
+  max-width: 200px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: ${({ big }) => (big ? '16px 40px' : '14px 24px')};
+  color: #ffffff;
+  font-size: ${({ big }) => (big ? '20px' : '14px')};
 `;
