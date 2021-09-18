@@ -1,7 +1,142 @@
 import React from 'react';
+import { useGlobalContext } from '../context';
 
 function CovidData() {
-  return <div>data</div>;
+  const { covidResult } = useGlobalContext();
+  return (
+    <>
+      <table className="table-content">
+        <thead>
+          <tr>
+            <th>iso_code</th>
+            <th>continent</th>
+            <th>location</th>
+            <th>datetotal_cases</th>
+            <th>new_cases</th>
+            <th>new_cases_smoothed</th>
+            <th>total_deaths</th>
+            <th>new_deaths</th>
+            <th>new_deaths_smoothed</th>
+            <th>total_cases_per_million</th>
+            <th>new_cases_per_million</th>
+            <th>new_cases_smoothed_per_million</th>
+            <th>total_deaths_per_million</th>
+            <th>new_deaths_per_million</th>
+            <th>new_deaths_smoothed_per_million</th>
+            <th>reproduction_rate</th>
+            <th>icu_patients</th>
+            <th>icu_patients_per_million</th>
+            <th>hosp_patientshosp_patients_per_million</th>
+            <th>weekly_icu_admissions</th>
+            <th>weekly_icu_admissions_per_million</th>
+            <th>weekly_hosp_admissions</th>
+            <th>weekly_hosp_admissions_per_million</th>
+            <th>new_tests</th>
+            <th>total_tests</th>
+            <th>total_tests_per_thousand</th>
+            <th>new_tests_per_thousand</th>
+            <th>new_tests_smoothed</th>
+            <th>new_tests_smoothed_per_thousand</th>
+            <th>positive_rate</th>
+            <th>tests_per_case</th>
+            <th>tests_units</th>
+            <th>total_vaccinations</th>
+            <th>people_vaccinated</th>
+            <th>people_fully_vaccinated</th>
+            <th>total_boosters</th>
+            <th>new_vaccinations</th>
+            <th>new_vaccinations_smoothed</th>
+            <th>total_vaccinations_per_hundred</th>
+            <th>people_vaccinated_per_hundred</th>
+            <th>people_fully_vaccinated_per_hundred</th>
+            <th>total_boosters_per_hundred</th>
+            <th>new_vaccinations_smoothed_per_million</th>
+            <th>stringency_index</th>
+            <th>population</th>
+            <th>population_density</th>
+            <th>median_ageaged_65_older</th>
+            <th>aged_70_oldergdp_per_capita</th>
+            <th>extreme_poverty</th>
+            <th>cardiovasc_death_rate</th>
+            <th>diabetes_prevalence</th>
+            <th>female_smokers</th>
+            <th>male_smokers</th>
+            <th>handwashing_facilities</th>
+            <th>hospital_beds_per_thousand</th>
+            <th>life_expectancy</th>
+            <th>human_development_index</th>
+            <th>excess_mortality</th>
+          </tr>
+        </thead>
+        <tbody>
+          {covidResult.map((item) => {
+            return (
+              <tr key={item.id}>
+                <td>{item.iso_code}</td>
+                <td>{item.continent}</td>
+                <td>{item.location}</td>
+                <td>{item.datetotal_cases}</td>
+                <td>{item.new_cases}</td>
+                <td>{item.new_cases_smootded}</td>
+                <td>{item.total_deatds}</td>
+                <td>{item.new_deatds}</td>
+                <td>{item.new_deatds_smootded}</td>
+                <td>{item.total_cases_per_million}</td>
+                <td>{item.new_cases_per_million}</td>
+                <td>{item.new_cases_smootded_per_million}</td>
+                <td>{item.total_deatds_per_million}</td>
+                <td>{item.new_deatds_per_million}</td>
+                <td>{item.new_deatds_smootded_per_million}</td>
+                <td>{item.reproduction_rate}</td>
+                <td>{item.icu_patients}</td>
+                <td>{item.icu_patients_per_million}</td>
+                <td>{item.hosp_patientshosp_patients_per_million}</td>
+                <td>{item.weekly_icu_admissions}</td>
+                <td>{item.weekly_icu_admissions_per_million}</td>
+                <td>{item.weekly_hosp_admissions}</td>
+                <td>{item.weekly_hosp_admissions_per_million}</td>
+                <td>{item.new_tests}</td>
+                <td>{item.total_tests}</td>
+                <td>{item.total_tests_per_tdousand}</td>
+                <td>{item.new_tests_per_tdousand}</td>
+                <td>{item.new_tests_smootded}</td>
+                <td>{item.new_tests_smootded_per_tdousand}</td>
+                <td>{item.positive_rate}</td>
+                <td>{item.tests_per_case}</td>
+                <td>{item.tests_units}</td>
+                <td>{item.total_vaccinations}</td>
+                <td>{item.people_vaccinated}</td>
+                <td>{item.people_fully_vaccinated}</td>
+                <td>{item.total_boosters}</td>
+                <td>{item.new_vaccinations}</td>
+                <td>{item.new_vaccinations_smootded}</td>
+                <td>{item.total_vaccinations_per_hundred}</td>
+                <td>{item.people_vaccinated_per_hundred}</td>
+                <td>{item.people_fully_vaccinated_per_hundred}</td>
+                <td>{item.total_boosters_per_hundred}</td>
+                <td>{item.new_vaccinations_smootded_per_million}</td>
+                <td>{item.stringency_index}</td>
+                <td>{item.population}</td>
+                <td>{item.population_density}</td>
+                <td>{item.median_ageaged_65_older}</td>
+                <td>{item.aged_70_oldergdp_per_capita}</td>
+                <td>{item.extreme_poverty}</td>
+                <td>{item.cardiovasc_deatd_rate}</td>
+                <td>{item.diabetes_prevalence}</td>
+                <td>{item.female_smokers}</td>
+                <td>{item.male_smokers}</td>
+                <td>{item.handwashing_facilities}</td>
+                <td>{item.hospital_beds_per_tdousand}</td>
+                <td>{item.life_expectancy}</td>
+                <td>{item.human_development_index}</td>
+                <td>{item.excess_mortality}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
+  );
 }
 
 export default CovidData;

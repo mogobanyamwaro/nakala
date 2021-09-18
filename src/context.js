@@ -9,6 +9,7 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [auth, setIsAuth] = useState(false);
+  const [covidResult, setCovidResult] = useState([]);
 
   const setAlert = (msg, alertType, timeout = 5000) => {
     const id = uuid();
@@ -36,6 +37,8 @@ const AppProvider = ({ children }) => {
     try {
       setLoading(true);
       const res = await axios.post(`/api/token/`, body, config);
+      console.log(res.data);
+      // console.log(res);
       if (res) {
         localStorage.setItem('token', res.data);
         setIsAuthenticated(true);
@@ -82,6 +85,30 @@ const AppProvider = ({ children }) => {
     // setAlert('logout successful.', 'success');
   };
 
+  const fetchCovidData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/covid/');
+      const data = await response.json();
+
+      console.log(data.results);
+
+      if (data.results) {
+        setCovidResult(data.results);
+      } else {
+        // setCovidResult([]);
+        console.log('no response');
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchCovidData();
+  }, []);
+
   return (
     <AppContext.Provider
       value={{
@@ -93,6 +120,7 @@ const AppProvider = ({ children }) => {
         alert,
         loading,
         isAuthenticated,
+        covidResult,
       }}
     >
       {children}

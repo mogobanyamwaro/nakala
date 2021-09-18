@@ -27,3 +27,35 @@ code {
 .alert--error {
   background-color: #dc3545;
 }
+.table-content {
+  border-collapse: collapse;
+  min-width: 400px;
+  margin: 25px 0;
+  /* background-color: blue; */
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+.table-content thead tr {
+  background-color: aqua;
+  text-align: left;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.table-content thead tr th,
+.table-content tbody tr td {
+  padding: 20px 20px;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.table-content thead tr,
+.table-content tbody tr {
+  border-bottom: 1px solid #333;
+}
+.table-content tbody tr:nth-of-type(even) {
+  background-color: #ccc;
+}
+.table-content tbody tr:last-of-type {
+  border-bottom: none;
+}
