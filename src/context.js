@@ -22,7 +22,7 @@ const AppProvider = ({ children }) => {
       },
     ]);
 
-    setTimeout(() => console.log('heelo'), 5000);
+    setTimeout(() => setAlert([]), timeout);
   };
 
   const login = async (email, password) => {
